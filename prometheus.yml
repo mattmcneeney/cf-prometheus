@@ -17,3 +17,10 @@ scrape_configs:
       insecure_skip_verify: true
     static_configs:
       - targets: ['overview-broker.services-api-product.cf-app.com']
+  - job_name: '33963a35-a7b1-442c-92ae-1b60625fba2d'
+    scheme: 'https'
+    metrics_path: /v2/service_instances/33963a35-a7b1-442c-92ae-1b60625fba2d/metrics
+    tls_config:
+      insecure_skip_verify: true
+    static_configs:
+      - targets: ['overview-broker.services-api-product.cf-app.com']
