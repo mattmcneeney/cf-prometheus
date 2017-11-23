@@ -4,6 +4,6 @@ applications:
   memory: 512M
   instances: 1
   buildpack: binary_buildpack
-  command: ./prometheus --config.file=prometheus.yml --web.listen-address=':8080'
+  command: ./run.sh
   health-check-type: process
 
