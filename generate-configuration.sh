@@ -15,8 +15,11 @@ do
     "
     echo -e $GLOBAL_CONFIG > $TEMP_CONFIG_FILE
 
+    # Remove http/https from BROKER_URL
+    STRIPPED_BROKER_URL=$(echo $BROKER_URL | sed 's~http[s]*://~~g')
+
     # List service instances
-    SERVICES=$(curl -s "http://admin:password@overview-broker.services-api-product.cf-app.com/v2/service_instances")
+    SERVICES=$(curl -s "http://$BROKER_USERNAME:$BROKER_PASSWORD@$STRIPPED_BROKER_URL/v2/service_instances")
     SERVICE_INSTANCE_IDS=($(echo $SERVICES | jq 'keys[]'))
 
     # Add scrape configs section if we have instances

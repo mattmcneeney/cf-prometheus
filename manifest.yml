@@ -6,4 +6,3 @@ applications:
   buildpack: binary_buildpack
   command: ./run.sh
   health-check-type: process
-

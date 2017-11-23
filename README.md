@@ -2,13 +2,19 @@
 
 ## Deploying
 
-First, generate a new configuration to track any new service instances:
+Push the app (without starting it)
 ```bash
-./generate-configuration.sh
+cf push --no-start
 ```
 
-Then push!
+Set the required environmental variables
 ```bash
-cf push
+cf set-env prometheus BROKER_URL <url>
+cf set-env prometheus BROKER_USERNAME <username>
+cf set-env prometheus BROKER_PASSWORD <password>
 ```
 
+Start the app:
+```bash
+cf start prometheus
+```
