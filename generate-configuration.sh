@@ -17,7 +17,7 @@ do
 
     # List service instances
     SERVICES=$(curl -s "http://admin:password@overview-broker.services-api-product.cf-app.com/v2/service_instances")
-    SERVICE_INSTANCE_IDS=$(echo $SERVICES | jq 'keys[]' | tr " " "\n")
+    SERVICE_INSTANCE_IDS=($(echo $SERVICES | jq 'keys[]'))
 
     # Add scrape configs section if we have instances
     if [ ${#SERVICES[@]} -gt 0 ]; then
@@ -46,7 +46,8 @@ do
         cp $TEMP_CONFIG_FILE $CONFIG_FILE
 
         # Reload prometheus
-        curl -X POST http://localhost:8080/-/reload
+        curl -s -X POST http://localhost:8080/-/reload &&
+        echo "Prometheus reloaded"
     fi
 
     sleep 10
